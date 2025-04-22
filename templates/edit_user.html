@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Edit User</h1>
+
+<div class="dashboard-summary">
+  <div class="dashboard-card" style="width: 100%;">
+    <form method="POST" action="{{ url_for('main_bp.edit_user', user_id=user.id) }}">
+      <div style="margin-bottom: 15px;">
+        <label>Username:</label><br>
+        <input type="text" name="username" value="{{ user.username }}" required style="width: 100%; padding: 8px;">
+      </div>
+      <div style="margin-bottom: 15px;">
+        <label>Email:</label><br>
+        <input type="email" name="email" value="{{ user.email }}" required style="width: 100%; padding: 8px;">
+      </div>
+      <div style="margin-bottom: 15px;">
+        <label>Role:</label><br>
+        <select name="role" required style="width: 100%; padding: 8px;">
+          <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>Admin</option>
+          <option value="user" {% if user.role == 'staff' %}selected{% endif %}>user</option>
+        </select>
+      </div>
+      <div style="margin-top: 20px;">
+        <button type="submit" style="padding: 10px 20px;">Save Changes</button>
+        <a href="{{ url_for('main_bp.manage') }}" style="margin-left: 20px;">Cancel</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

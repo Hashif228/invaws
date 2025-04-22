@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Stock Management</h1>
+
+<div class="stock-table-container">
+  <table class="stock-table">
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Name</th>
+        <th>Current Stock</th>
+        <th>Minimum Required</th>
+        <th>Status</th>
+        <th>Last Updated</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+      <tr>
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.stock }}</td>
+        <td>{{ product.minimum_stock or 10 }}</td>
+        <td class="{% if product.stock == 0 %}out-of-stock{% elif product.stock < (product.minimum_stock or 10) %}low-stock{% else %}in-stock{% endif %}">
+          {% if product.stock == 0 %}
+            No Stock
+          {% elif product.stock < (product.minimum_stock or 10) %}
+            Low Stock
+          {% else %}
+            In Stock
+          {% endif %}
+        </td>
+        <td>{{ product.date}}</td>
+        <td>
+          <button class="action-btn update-btn" onclick="openUpdateStockModal('{{ product.id }}', '{{ product.name }}', '{{ product.stock }}')">Update</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="updateStockModal" style="display: none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Update Stock</h3>
+      <span class="close" onclick="closeUpdateStockModal()">&times;</span>
+    </div>
+    <form method="post" action="{{ url_for('main_bp.update_stock') }}">
+      <input type="hidden" name="product_id" id="modalProductId">
+      <div class="form-group">
+        <label for="modalProductName">Product</label>
+        <input type="text" id="modalProductName" class="form-control" disabled>
+      </div>
+      <div class="form-group">
+        <label for="modalNewStock">New Stock</label>
+        <input type="number" name="new_stock" id="modalNewStock" class="form-control" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" onclick="closeUpdateStockModal()">Cancel</button>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openUpdateStockModal(id, name, stock) {
+    document.getElementById('modalProductId').value = id;
+    document.getElementById('modalProductName').value = name;
+    document.getElementById('modalNewStock').value = stock;
+    document.getElementById('updateStockModal').style.display = 'flex';
+  }
+
+  function closeUpdateStockModal() {
+    document.getElementById('updateStockModal').style.display = 'none';
+  }
+</script>
+{% endblock %}

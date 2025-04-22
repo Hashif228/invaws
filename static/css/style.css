@@ -1,0 +1,98 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f5f5;
+  }
+  
+  header {
+    background: #2196F3;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .header-right span {
+    margin: 0 10px;
+  }
+  
+  .container {
+    display: flex;
+  }
+  
+  aside {
+    width: 200px;
+    background: white;
+    padding: 20px 10px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  }
+  
+  aside a {
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 500;
+  }
+  
+  aside a i {
+    margin-right: 10px;
+  }
+  
+  aside a.active {
+    background: #2196F3;
+    color: white;
+  }
+  
+  main {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .cards {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    flex: 1;
+  }
+  
+  .card h3 {
+    color: #2196F3;
+    font-size: 24px;
+    margin: 10px 0 0;
+  }
+  
+  .recent-activity {
+    background: white;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  }
+  
+  .recent-activity ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recent-activity li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+  }
+  

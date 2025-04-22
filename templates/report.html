@@ -1,0 +1,62 @@
+{%extends "base.html" %}
+
+{% block content %}
+<h1>Reports</h1>
+
+<div class="reports-filters">
+  <label for="report-type">Report Type:</label>
+  <select id="report-type">
+    <option>Sales Report</option>
+    <option>Purchase Report</option>
+    <option>Inventory Report</option>
+  </select>
+
+  <label for="date-range">Date Range:</label>
+  <select id="date-range">
+    <option>Last 7 Days</option>
+    <option>This Month</option>
+    <option>Last Month</option>
+    <option>Custom</option>
+  </select>
+
+  <button class="export-btn">Export as PDF</button>
+  <button class="export-btn">Export as CSV</button>
+</div>
+
+<div class="reports-table-section">
+  <table class="reports-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Item</th>
+        <th>Type</th>
+        <th>Quantity</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>2025-04-14</td>
+        <td>Mouse</td>
+        <td>Sale</td>
+        <td>10</td>
+        <td>$250</td>
+      </tr>
+      <tr>
+        <td>2025-04-13</td>
+        <td>USB Cable</td>
+        <td>Purchase</td>
+        <td>50</td>
+        <td>$150</td>
+      </tr>
+      <tr>
+        <td>2025-04-12</td>
+        <td>Keyboard</td>
+        <td>Sale</td>
+        <td>8</td>
+        <td>$320</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

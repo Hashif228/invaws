@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="logo">Smart Inventory</div>
+    <nav>
+        <ul>
+            <!-- <li><a href="#"><i class="fas fa-bell"></i></a></li> -->
+            <li id="tuser" style="cursor: pointer;"><i class="fa-regular fa-circle-user"></i>Login</li>
+              
+            <!-- <li><a href="#" id="tadmin"><i class="fa-solid fa-user-plus"></i>Admin</a></li> -->
+            <!-- <li><a href="#"><i class="fas fa-sign-out-alt"></i></a></li> -->
+        </ul>
+    </nav>
+</header>
+
+{% if otp_available %}
+<div style="display: flex;justify-content: center;">
+  <!-- <img src="{{ url_for('static', filename='images/inventory-28582804.webp') }}" alt="Inventory Image"  width="245" height="175"> -->
+  <!-- <img src="{{ url_for('static', filename='images/inv.jpg') }}" alt="Inventory Image"  width="245" height="175"> -->
+  <img src="{{ url_for('static', filename='images/th.jpeg') }}" alt="Inventory Image"  style="width: 175px;height: 225px;border-radius: 80px;">
+
+</div>
+<div class="login-container otp" >
+ 
+
+
+<form method="POST">
+
+
+
+
+
+
+ 
+  <div class="mb-3">
+        <label for="username" class="form-label">Email</label>
+        <input type="text" class="form-control" id="ruusername" value={{s}} name="ruusername" style="color: gray;" required autofocus readonly disabled>
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+
+        <input type="text" class="form-control fc" id="registerupassword" value="xxxxxxxxxx" name="registerupassword" required readonly disabled>
+      </div>
+
+      <div class="mb-3">
+        <label for="confirmpassword" class="form-label">Confirm Password</label>
+
+        <input type="password" class="form-control fc" id="registeruconfirmpassword" value="xxxxxxxxxx" name="registeruconfirmpassword" required readonly disabled>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Enter OTP</label>
+        <input type="hidden" name="form_check" value="otp">
+    
+        <input type="text" name="otp" class="form-control" required>
+      </div>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <div>
+          {% for message in messages %}
+              <div class="alert alert-success">{{ message }}</div>
+          {% endfor %}
+      </div>
+  {% endif %}
+{% endwith %}
+
+  <button type="submit" class="btn btn-primary bp">Confirm</button>
+
+</form>
+</div>
+{% else %}
+
+  <div class="login-container lg" id="lg">
+    <div class="lgn_close" id="lgn_close">X</div>
+    <div class="login-title lt">Login to Inventory</div>
+    <div class="who">User Login</div>
+  
+    <form method="POST">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="uusername" name="uusername" placeholder="Enter your email" required autofocus>
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control fc" id="upassword" placeholder="Password" name="upassword" required autofocus>
+      </div>
+      <input type="hidden" name="form_check" value="user_login">
+
+      <button type="submit" class="btn btn-primary bp">Login</button>
+  
+    </form>
+  
+  
+  </div>
+  
+  
+
+
+
+
+  <div class="login-container lg" id="register">
+    <div class="reg_close" id="reg_close">X</div>
+    <div class="login-title lt">Register</div>
+    <div class="who">User Register</div>
+    
+    <form method="POST">
+      <div class="mb-3">
+        <label for="username" class="form-label">Email</label>
+        <input type="text" class="form-control" id="ruusername" name="ruusername" required autofocus>
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+
+        <input type="text" class="form-control fc" id="registerupassword" name="registerupassword" required autofocus>
+      </div>
+
+      <div class="mb-3">
+        <label for="confirmpassword" class="form-label">Confirm Password</label>
+
+        <input type="password" class="form-control fc" id="registeruconfirmpassword" name="registeruconfirmpassword" required autofocus>
+      </div>
+      <input type="hidden" name="form_check" value="register">
+
+      <button type="submit" class="btn btn-primary bp">Register</button>
+  
+    </form>
+  
+  
+  </div>
+
+  
+  
+  
+  
+  
+  
+  <div class="login-container lg" id="alg">
+    <div class="lgn_close" id="algn_close">X</div>
+    <div class="login-title lt">Login to Inventory</div>
+    <div class="who">Admin Login</div>
+    
+    <form method="POST" action="/login">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="ausername" name="ausername" required autofocus>
+      </div>
+      
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control fc" id="apassword" name="apassword" required autofocus>
+      </div>
+  
+      <button type="submit" class="btn btn-primary bp">Login</button>
+  
+    </form>
+  
+    <!-- <p class="text-center text-muted mt-3 tm">© 2025 Smart Inventory System</p> -->
+  </div>
+  
+
+
+    
+
+<div style="display: flex;justify-content: center;">
+    <!-- <img src="{{ url_for('static', filename='images/inventory-28582804.webp') }}" alt="Inventory Image"  width="245" height="175"> -->
+    <!-- <img src="{{ url_for('static', filename='images/inv.jpg') }}" alt="Inventory Image"  width="245" height="175"> -->
+    <img src="{{ url_for('static', filename='images/th.jpeg') }}" alt="Inventory Image"  style="width: 175px;height: 225px;border-radius: 80px;">
+
+</div>
+
+<div class="welcome_cont" id="welcome_cont">
+
+    <div class="container">
+    <div style="color: red;">Login to your account to manage the inventory</div>
+
+        <h1>Smart Inventory Management System</h1>
+        <p>
+          Welcome! This system allows you to efficiently manage products, track stock levels, monitor low inventory alerts,
+          and view transaction history with a beautiful dashboard. Secure login ensures only authorized users can access the system.
+        </p>
+        <!-- <button id="admin">Admin</button> -->
+        <button id="user">Login</button>
+<div class="register" id="newuser">New User-click here</div>
+      </div>
+
+
+</div>
+
+{% endif %}
+
+
+
+<div style="height: 35px;width: 100vw;background-color: #334a4e;position: fixed;bottom: 0;"></div>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+</body>
+</html>

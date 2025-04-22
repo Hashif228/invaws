@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Analytics Dashboard</h1>
+
+
+<div class="analytics-summary">
+  <div class="analytics-card">
+    <p>Total Products</p>
+    <h2>{{ total_products }}</h2>
+  </div>
+  <div class="analytics-card">
+    <p>Low Stock</p>
+    <h2>{{ low_stock }}</h2>
+  </div>
+  <div class="analytics-card">
+    <p>Today's Sales</p>
+    <h2>${{ todays_sales }}</h2>
+  </div>
+  <div class="analytics-card">
+    <p>Monthly Revenue</p>
+    <h2>${{ monthly_revenue }}</h2>
+  </div>
+</div>
+
+<div class="analytics-grid">
+  <div class="analytics-box">
+    <h3>Top Selling Products</h3>
+    <img src="{{ url_for('static', filename='images/top_selling.png') }}">
+  </div>
+  
+  <div class="analytics-box">
+    <h3>Daily Sales</h3>
+    <img src="{{ url_for('static', filename='images/daily_sales.png') }}">
+  </div>
+  
+  <div class="analytics-box">
+    <h3>Monthly Revenue</h3>
+    <img src="{{ url_for('static', filename='images/monthly_sales.png') }}">
+  </div>
+  
+  <div class="analytics-box">
+    <h3>Yearly Sales Overview</h3>
+    <img src="{{ url_for('static', filename='images/yearly_sales.png') }}">
+  </div>
+  
+  <div class="analytics-box">
+    <h3>Inventory Heatmap</h3>
+    <img src="{{ url_for('static', filename='images/inventory_heatmap.png') }}">
+  </div>
+  <div class="analytics-box">
+    <h3>Inventory Breakdown by Category(pie chart)</h3>
+    <img src="{{ url_for('static', filename='images/category_pie_chart.png') }}" alt="Category Pie Chart" />
+  </div>
+</div>
+<style>.analytics-box {
+  max-width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+}
+
+.analytics-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: auto;
+  max-width: 100%;
+}</style>
+{% endblock %}

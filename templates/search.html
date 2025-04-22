@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Search & Filter Inventory</h1>
+
+<form method="GET" action="{{ url_for('main_bp.search') }}">
+  <div class="search-filter-controls">
+    <input type="text" name="search" placeholder="🔍 Search by product name..." class="search-input" value="{{ request.args.get('search', '') }}">
+
+    <select name="category" class="filter-dropdown">
+      <option value="">All Categories</option>
+      <option value="electronics" {% if request.args.get('category') == 'electronics' %}selected{% endif %}>Electronics</option>
+      <option value="accessories" {% if request.args.get('category') == 'accessories' %}selected{% endif %}>Accessories</option>
+      <option value="cables" {% if request.args.get('category') == 'cables' %}selected{% endif %}>Cables</option>
+      <option value="others" {% if request.args.get('category') == 'others' %}selected{% endif %}>Others</option>
+    </select>
+
+    <select name="status" class="filter-dropdown">
+      <option value="">Stock Status</option>
+      <option value="in-stock" {% if request.args.get('status') == 'in-stock' %}selected{% endif %}>In Stock</option>
+      <option value="low-stock" {% if request.args.get('status') == 'low-stock' %}selected{% endif %}>Low Stock</option>
+      <option value="out-of-stock" {% if request.args.get('status') == 'out-of-stock' %}selected{% endif %}>Out of Stock</option>
+    </select>
+
+    <button type="submit" class="filter-btn">Apply Filters</button>
+  </div>
+</form>
+
+<div class="results-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Stock</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.stock }}</td>
+        <td>
+          {% if product.stock == 0 %}
+            Out of Stock
+          {% elif product.stock <= 10 %}
+            Low Stock
+          {% else %}
+            In Stock
+          {% endif %}
+        </td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="4">No products found.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

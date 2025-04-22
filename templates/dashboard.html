@@ -1,0 +1,48 @@
+{% extends "base.html" %} 
+{% block content %}
+<h1>Dashboard</h1>
+
+<div class="dashboard-summary">
+  <div class="dashboard-card">
+    <h3>Total Products</h3>
+    <p>{{total_stock}}</p>
+  </div>
+  <div class="dashboard-card">
+    <h3>Total Categories</h3>
+    <p>{{total_categories}}</p>
+  </div>
+  <div class="dashboard-card">
+    <h3>Low Stock Items</h3>
+    <p>{{low_stock_count}}</p>
+  </div>
+  <div class="dashboard-card">
+    <h3>Total Sales</h3>
+    <p>{{total_sales}}</p>
+  </div>
+  <div class="dashboard-card" style="width: fit-content;">
+    <h3>Total Purchases</h3>
+    <p>{{total_purchases}}</p>
+  </div>
+  <div class="dashboard-card" style="width: fit-content;">
+    <li style="margin-bottom: 5px;">    <a href="{{ url_for('main_bp.export_sales_report') }}">📥Sales Report-Download</a></li>
+    <li>    <a href="{{ url_for('main_bp.export_purchase_report') }}">📥Purchase Report-Download</a></li>
+  </div>
+</div>
+
+<div class="dashboard-activity">
+ 
+
+  <div class="dashboard-box" style="width: fit-content;">
+    <p>Quick Links</p>
+    <ul class="dashboard-list">
+      <li><a  href="{{ url_for('main_bp.products') }}">➕ Add Product</a></li>
+      <li><a  href="{{ url_for('main_bp.stock') }}">📦 Manage Stock</a></li>
+      <li><a  href="{{ url_for('main_bp.sales') }}">💰 View Sales</a></li>
+      <li><a  href="{{ url_for('main_bp.analytics') }}">📈 View Analytics</a></li>
+      
+
+    </ul>
+  </div>
+
+</div>
+{% endblock %}
